@@ -32,8 +32,8 @@ public class AmazonViewer {
 			System.out.println("6. Report today");
 			System.out.println("0. Exit");
 		
-			option = sc.nextByte();
-
+			option = Byte.valueOf(sc.nextByte());
+			
 			switch (option) {
 
 			case 1:
@@ -88,14 +88,50 @@ public class AmazonViewer {
 	}
 
 	public static void showMovies() {
-		System.out.println("");
-		System.out.println(":: Welcome to Amazon Movies ::");
-		System.out.println("");
-		System.out.println("here you get a list of movies in Amazon movies.");
+		
+		Scanner sc = new Scanner(System.in);
+		
+		byte option;
+		
 		ArrayList<Movie> movies = Movie.makeMoviesList();
-		for (int i = 0; i < movies.size() ; i++) {
-			System.out.println(i+1 + ". " + movies.get(i).getTitle() + " Visto: " + movies.get(i).isViewed());
-		}
+		
+		do {
+			System.out.println("");
+			System.out.println(":: Welcome to Amazon Movies ::");
+			System.out.println("");
+			System.out.println("Here you get a list of movies in Amazon movies.");
+			
+			
+			System.out.println("You can watch a movie or go back using the menu");
+			
+			for (int i = 0; i < movies.size() ; i++) {
+				System.out.println(i+1 + ". " + movies.get(i).getTitle() + " Visto: " + movies.get(i).isViewed());
+			}
+			
+			System.out.println("0. Exit");
+			
+			option = Byte.valueOf(sc.nextLine());
+			
+			if(option == 0)
+				showMenu();
+			
+			Movie movieSelected = movies.get(option-1);
+			movieSelected.setViewed(true);
+			Date dateI = movieSelected.startToSee(new Date());
+			
+			for (int i = 0; i < 100000; i++) {
+				System.out.println(".............................");
+			}
+			
+			movieSelected.stopToSee(dateI, new Date());
+			
+			System.out.println("You saw: ");
+			System.out.println(movieSelected);
+			System.out.println("during:\t" + movieSelected.getTimeViewed() + "miliseconds");
+			
+		}while(option != 0);
+		sc.close();
+		
 	}
 
 	public static void showSeries() {

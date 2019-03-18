@@ -32,12 +32,13 @@ public class Film {
 		this.year = year;
 	}
 	public String isViewed() {
-		
+		String response = "";
 		if(viewed) {
-			return "Yes";
+			response = "Yes";
 		}else {
-			return "Nop";
+			response = "Nop";
 		}
+		return response;
 	}
 	public void setViewed(boolean viewed) {
 		this.viewed = viewed;

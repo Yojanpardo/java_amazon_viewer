@@ -54,15 +54,15 @@ public class Movie extends Film implements IVisualizable{
 	@Override
 	public void stopToSee(Date dateI, Date dateF) {
 		// TODO Auto-generated method stub
-		if(dateF.getSeconds() > dateI.getSeconds()) {
-			setTimeViewed(dateF.getSeconds() - dateI.getSeconds()); 
+		if(dateF.getTime() > dateI.getTime()) {
+			setTimeViewed((int)dateF.getTime() - (int)dateI.getTime()); 
 		}else {
 			setTimeViewed(0);
 		}
 	}
 	
 	public static ArrayList<Movie> makeMoviesList(){
-		ArrayList<Movie> movies = new ArrayList();
+		ArrayList<Movie> movies = new ArrayList<Movie>();
 		for (int i = 0; i < 5; i++) {
 			movies.add(new Movie("Movie" + i, 135+i));
 		}
